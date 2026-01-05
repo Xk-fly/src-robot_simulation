@@ -1,0 +1,23 @@
+<launch>
+  
+  <!-- 设置全局帧ID -->
+  <arg name="frame_id" default="map"/>
+  <node pkg="tf" type="static_transform_publisher" name="odom_to_bas22e_footprint" args="0.0 0.0 0.0 0 0 0.0 /camera_init /map 100"/>
+
+  <!-- Octomap服务器节点 -->
+  <node name="octomap_server" pkg="octomap_server" type="octomap_server_node" output="screen">
+    <param name="frame_id" value="$(arg frame_id)"/>
+    <param name="resolution" value="0.1"/> <!-- 设置地图分辨率 -->
+    <param name="sensor_model/max_range" value="30.0"/> <!-- 设置传感器最大范围 -->
+    <param name="sensor_model/min_range" value="-30"/> <!-- 设置传感器最小范围 -->
+    <!-- <param name="latch" value="true"/> -->
+    <param name="pointcloud_max_z" value="4.0"/> <!-- 设置点云最大高度 -->
+    <param name="pointcloud_min_z" value="0.1"/> <!-- 设置点云最小高度 -->
+    <remap from="cloud_in" to="/cloud_registered"/> <!-- 设置输入点云的话题 -->
+    <!-- 地图大小 -->
+
+  </node>
+
+  
+  
+</launch>
