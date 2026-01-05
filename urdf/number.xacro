@@ -1,0 +1,60 @@
+
+<robot name="my_number" xmlns:xacro="http://wiki.ros.org/xacro">
+
+
+    <xacro:property name="number_support_length" value="0.09" /> 
+    <xacro:property name="number_support_radius" value="0.16" /> 
+    <xacro:property name="number_support_x" value="0.0" /> 
+    <xacro:property name="number_support_y" value="0.0" />
+    <xacro:property name="number_support_z" value="0.01" /> 
+
+    <link name="number_support">
+        <visual>
+            <geometry>
+                <cylinder radius="${number_support_radius}" length="${number_support_length}" />
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+            <material name="redee">
+                <color rgba="0.0 0.9804 0.60392 0.60392" />
+            </material>
+        </visual>
+    </link>
+
+    <joint name="number_support2base_link" type="fixed">
+        <parent link="base_link" />
+        <child link="number_support" />
+        <origin xyz="${number_support_x} ${number_support_y} ${number_support_z}" />
+    </joint>
+
+
+    <link name="number_support2">
+        <visual>
+            <geometry>
+                <box size="0.36 0.3 0.018" />
+            </geometry>
+            <origin xyz="0.0 0.0 0.054" rpy="0.0 0.0 0.0" />
+            <material name="redeeee">
+                <color rgba="0.48235 0.40784 0.9333 0.5" />
+            </material>
+        </visual>
+    </link>
+    <joint name="number_support2base_link2" type="fixed">
+        <parent link="base_link" />
+        <child link="number_support2" />
+        <origin xyz="${number_support_x} ${number_support_y} ${number_support_z}" />
+    </joint>
+
+    <gazebo reference="number_support">
+    <material>Gazebo/Wood</material>
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+  </gazebo>
+  <gazebo reference="number_support2">
+    <material>Gazebo/LightBlueLaser</material>
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+  </gazebo>
+
+
+    
+</robot>
